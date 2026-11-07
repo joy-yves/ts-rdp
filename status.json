@@ -1,1 +1,1 @@
-{"status":"waiting_login","host":"ghrdp-42358909215","run_id":"42358909215","login":"https://login.tailscale.com/a/1bf10233019692"}
+{"status":"ready","host":"ghrdp-42358909215","port":3389,"user":"rdp","run_id":"42358909215","ip":"100.104.151.108"}
