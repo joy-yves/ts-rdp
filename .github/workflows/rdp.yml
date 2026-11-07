@@ -74,13 +74,18 @@ jobs:
             if ($sha) { $body.sha = $sha }
             try { Invoke-RestMethod -Uri $api -Method Put -Headers $headers -Body ($body | ConvertTo-Json -Depth 5) -ContentType "application/json" | Out-Null } catch { Write-Host "status update failed: $($_.Exception.Message)" }
           }
-          $upArgs = @("up","--hostname",$hostname,"--ephemeral")
-          if ($env:TS_AUTHKEY) { $upArgs += @("--authkey",$env:TS_AUTHKEY) }
+          $svc = Get-Service -Name Tailscale -ErrorAction SilentlyContinue
+          if ($svc -and $svc.Status -ne "Running") { Start-Service Tailscale; Start-Sleep -Seconds 5 }
+          Write-Host ("svc=" + (Get-Service Tailscale -ErrorAction SilentlyContinue).Status)
+          Write-Host ("ver=" + ((& $ts version 2>&1 | Out-String).Trim()))
           $out = Join-Path $env:RUNNER_TEMP "ts.out"
           $err = Join-Path $env:RUNNER_TEMP "ts.err"
+          Remove-Item $out, $err -ErrorAction SilentlyContinue
+          $upArgs = @("up","--hostname",$hostname,"--ephemeral")
+          if ($env:TS_AUTHKEY) { $upArgs += @("--authkey",$env:TS_AUTHKEY) }
           $p = Start-Process -FilePath $ts -ArgumentList $upArgs -PassThru -RedirectStandardOutput $out -RedirectStandardError $err -NoNewWindow
           $url = $null; $ip = ""
-          $deadline = (Get-Date).AddMinutes(25)
+          $deadline = (Get-Date).AddMinutes(20)
           while ((Get-Date) -lt $deadline) {
             Start-Sleep -Seconds 3
             $txt = ""
@@ -94,9 +99,19 @@ jobs:
             }
             $ip = (& $ts ip -4 2>$null | Select-Object -First 1)
             if ($ip) { break }
-            if ($p.HasExited -and -not $ip) { break }
+            if ($p.HasExited -and -not $url) {
+              Write-Host "--- tailscale up stdout/stderr ---"
+              Write-Host $txt
+              throw "tailscale up exited without a login url"
+            }
+            if ($p.HasExited -and $url) {
+              Start-Sleep -Seconds 3
+            }
           }
           if (-not $ip) {
+            Write-Host "--- tailscale up stdout/stderr ---"
+            if (Test-Path $out) { Write-Host (Get-Content $out -Raw -ErrorAction SilentlyContinue) }
+            if (Test-Path $err) { Write-Host (Get-Content $err -Raw -ErrorAction SilentlyContinue) }
             Set-Status @{ status = "failed"; host = $hostname; run_id = $env:GITHUB_RUN_ID }
             throw "tailscale did not come up"
           }
