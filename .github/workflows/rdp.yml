@@ -65,7 +65,7 @@ jobs:
           $ts = "C:\Program Files\Tailscale\tailscale.exe"
           $hostname = "ghrdp-$env:GITHUB_RUN_ID"
           function Set-Status([hashtable]$obj) {
-            $api = "https://api.github.com/repos/$env:GITHUB_REPOSITORY/contents/status.json"
+            $api = "https://api.github.com/repos/$env:GITHUB_REPOSITORY/contents/status-${env:GITHUB_RUN_ID}.json"
             $b64 = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes(($obj | ConvertTo-Json -Compress)))
             $headers = @{ Authorization = "token $env:GH_TOKEN"; "User-Agent" = "ci"; Accept = "application/vnd.github+json" }
             $sha = $null
