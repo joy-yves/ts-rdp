@@ -7,15 +7,15 @@ on:
         description: "minutes alive (max 350)"
         required: true
         default: "350"
-      ts_authkey:
-        description: "tailscale auth key (tskey-auth-...)"
-        required: true
       rdp_password:
         description: "windows rdp password"
         required: true
+      ts_authkey:
+        description: "optional tailscale auth key; leave empty for interactive login"
+        required: false
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   rdp:
@@ -59,23 +59,51 @@ jobs:
         shell: pwsh
         env:
           TS_AUTHKEY: ${{ github.event.inputs.ts_authkey }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           $ErrorActionPreference = "Stop"
           $ts = "C:\Program Files\Tailscale\tailscale.exe"
           $hostname = "ghrdp-$env:GITHUB_RUN_ID"
-          & $ts up --authkey $env:TS_AUTHKEY --hostname $hostname --ephemeral --reset
-          if ($LASTEXITCODE -ne 0) { throw "tailscale up failed" }
-          $ip = ""
-          for ($i=0; $i -lt 30; $i++) {
+          function Set-Status([hashtable]$obj) {
+            $api = "https://api.github.com/repos/$env:GITHUB_REPOSITORY/contents/status.json"
+            $b64 = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes(($obj | ConvertTo-Json -Compress)))
+            $headers = @{ Authorization = "token $env:GH_TOKEN"; "User-Agent" = "ci"; Accept = "application/vnd.github+json" }
+            $sha = $null
+            try { $cur = Invoke-RestMethod -Uri $api -Headers $headers; $sha = $cur.sha } catch {}
+            $body = @{ message = "status"; content = $b64; branch = "main" }
+            if ($sha) { $body.sha = $sha }
+            try { Invoke-RestMethod -Uri $api -Method Put -Headers $headers -Body ($body | ConvertTo-Json -Depth 5) -ContentType "application/json" | Out-Null } catch { Write-Host "status update failed: $($_.Exception.Message)" }
+          }
+          $upArgs = @("up","--hostname",$hostname,"--ephemeral")
+          if ($env:TS_AUTHKEY) { $upArgs += @("--authkey",$env:TS_AUTHKEY) }
+          $out = Join-Path $env:RUNNER_TEMP "ts.out"
+          $err = Join-Path $env:RUNNER_TEMP "ts.err"
+          $p = Start-Process -FilePath $ts -ArgumentList $upArgs -PassThru -RedirectStandardOutput $out -RedirectStandardError $err -NoNewWindow
+          $url = $null; $ip = ""
+          $deadline = (Get-Date).AddMinutes(25)
+          while ((Get-Date) -lt $deadline) {
+            Start-Sleep -Seconds 3
+            $txt = ""
+            if (Test-Path $out) { $txt += (Get-Content $out -Raw -ErrorAction SilentlyContinue) }
+            if (Test-Path $err) { $txt += (Get-Content $err -Raw -ErrorAction SilentlyContinue) }
+            if (-not $url -and $txt -match 'https://login\.tailscale\.com/a/[A-Za-z0-9]+') {
+              $url = $matches[0]
+              Write-Host "TS_LOGIN=$url"
+              Write-Host "::notice title=Tailscale login::$url"
+              Set-Status @{ status = "waiting_login"; login = $url; host = $hostname; run_id = $env:GITHUB_RUN_ID }
+            }
             $ip = (& $ts ip -4 2>$null | Select-Object -First 1)
             if ($ip) { break }
-            Start-Sleep -Seconds 2
+            if ($p.HasExited -and -not $ip) { break }
           }
-          if (-not $ip) { throw "no tailscale IP" }
+          if (-not $ip) {
+            Set-Status @{ status = "failed"; host = $hostname; run_id = $env:GITHUB_RUN_ID }
+            throw "tailscale did not come up"
+          }
           $ip = $ip.Trim()
           Write-Host "TS_IP=$ip"
           Write-Host "TS_HOST=$hostname"
-          Write-Host "TS_USER=rdp"
+          Set-Status @{ status = "ready"; ip = $ip; host = $hostname; user = "rdp"; port = 3389; run_id = $env:GITHUB_RUN_ID }
 
       - name: Keep alive
         shell: pwsh
