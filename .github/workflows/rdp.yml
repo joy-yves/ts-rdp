@@ -122,10 +122,6 @@ jobs:
           Write-Host "TS_IP=$ip"
           Write-Host "TS_HOST=$hostname"
           Write-Host "TS_SELF=$self"
-          if ($self -notmatch 'tail83d14d') {
-            Set-Status @{ status = "wrong_tailnet"; ip = $ip; host = $hostname; self = $self; run_id = $env:GITHUB_RUN_ID }
-            throw "wrong tailnet: $self"
-          }
           Set-Status @{ status = "ready"; ip = $ip; host = $hostname; self = $self; user = "rdp"; port = 3389; run_id = $env:GITHUB_RUN_ID }
           exit 0
 
