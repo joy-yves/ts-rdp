@@ -1,0 +1,90 @@
+name: ts-rdp
+
+on:
+  workflow_dispatch:
+    inputs:
+      duration_minutes:
+        description: "minutes alive (max 350)"
+        required: true
+        default: "350"
+      ts_authkey:
+        description: "tailscale auth key (tskey-auth-...)"
+        required: true
+      rdp_password:
+        description: "windows rdp password"
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  rdp:
+    runs-on: windows-2022
+    timeout-minutes: 360
+    steps:
+      - name: Enable RDP and create user
+        shell: pwsh
+        env:
+          RDP_PASSWORD: ${{ github.event.inputs.rdp_password }}
+        run: |
+          $ErrorActionPreference = "Stop"
+          $u = "rdp"; $p = $env:RDP_PASSWORD
+          if (-not (Get-LocalUser -Name $u -ErrorAction SilentlyContinue)) {
+            New-LocalUser -Name $u -Password (ConvertTo-SecureString $p -AsPlainText -Force) -PasswordNeverExpires -AccountNeverExpires | Out-Null
+          } else {
+            Set-LocalUser -Name $u -Password (ConvertTo-SecureString $p -AsPlainText -Force)
+          }
+          Add-LocalGroupMember -Group "Administrators" -Member $u -ErrorAction SilentlyContinue
+          Add-LocalGroupMember -Group "Remote Desktop Users" -Member $u -ErrorAction SilentlyContinue
+          Set-ItemProperty 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name fDenyTSConnections -Value 0
+          Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
+          New-NetFirewallRule -DisplayName "RDP 3389" -Direction Inbound -Protocol TCP -LocalPort 3389 -Action Allow -Profile Any -ErrorAction SilentlyContinue | Out-Null
+          Set-Service TermService -StartupType Automatic
+          Start-Service TermService
+          Write-Host "rdp user ready"
+
+      - name: Install Tailscale
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+          $msi = Join-Path $env:RUNNER_TEMP "tailscale.msi"
+          Invoke-WebRequest "https://pkgs.tailscale.com/stable/tailscale-setup-latest-amd64.msi" -OutFile $msi
+          $p = Start-Process msiexec.exe -ArgumentList "/i `"$msi`" /qn /norestart" -Wait -PassThru
+          if ($p.ExitCode -ne 0) { throw "MSI failed $($p.ExitCode)" }
+          if (-not (Test-Path "C:\Program Files\Tailscale\tailscale.exe")) { throw "tailscale.exe missing" }
+          Write-Host "tailscale installed"
+
+      - name: Join tailnet
+        shell: pwsh
+        env:
+          TS_AUTHKEY: ${{ github.event.inputs.ts_authkey }}
+        run: |
+          $ErrorActionPreference = "Stop"
+          $ts = "C:\Program Files\Tailscale\tailscale.exe"
+          $hostname = "ghrdp-$env:GITHUB_RUN_ID"
+          & $ts up --authkey $env:TS_AUTHKEY --hostname $hostname --ephemeral --reset
+          if ($LASTEXITCODE -ne 0) { throw "tailscale up failed" }
+          $ip = ""
+          for ($i=0; $i -lt 30; $i++) {
+            $ip = (& $ts ip -4 2>$null | Select-Object -First 1)
+            if ($ip) { break }
+            Start-Sleep -Seconds 2
+          }
+          if (-not $ip) { throw "no tailscale IP" }
+          $ip = $ip.Trim()
+          Write-Host "TS_IP=$ip"
+          Write-Host "TS_HOST=$hostname"
+          Write-Host "TS_USER=rdp"
+
+      - name: Keep alive
+        shell: pwsh
+        env:
+          DURATION: ${{ github.event.inputs.duration_minutes }}
+        run: |
+          $deadline = (Get-Date).AddMinutes([int]$env:DURATION)
+          $ts = "C:\Program Files\Tailscale\tailscale.exe"
+          while ((Get-Date) -lt $deadline) {
+            Start-Sleep -Seconds 60
+            & $ts status | Out-Null
+          }
