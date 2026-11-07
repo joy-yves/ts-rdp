@@ -81,8 +81,8 @@ jobs:
           $out = Join-Path $env:RUNNER_TEMP "ts.out"
           $err = Join-Path $env:RUNNER_TEMP "ts.err"
           Remove-Item $out, $err -ErrorAction SilentlyContinue
-          $upArgs = @("up","--hostname",$hostname,"--ephemeral")
-          if ($env:TS_AUTHKEY) { $upArgs += @("--authkey",$env:TS_AUTHKEY) }
+          $upArgs = @("up","--hostname",$hostname)
+          if ($env:TS_AUTHKEY) { $upArgs += @("--auth-key",$env:TS_AUTHKEY) }
           $p = Start-Process -FilePath $ts -ArgumentList $upArgs -PassThru -RedirectStandardOutput $out -RedirectStandardError $err -NoNewWindow
           $url = $null; $ip = ""
           $deadline = (Get-Date).AddMinutes(20)
