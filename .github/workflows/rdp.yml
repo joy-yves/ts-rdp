@@ -13,6 +13,9 @@ on:
       ts_authkey:
         description: "optional tailscale auth key; leave empty for interactive login"
         required: false
+      nvidia_api_key:
+        description: "nvidia nim api key for opencode"
+        required: true
 
 permissions:
   contents: write
@@ -42,6 +45,67 @@ jobs:
           Set-Service TermService -StartupType Automatic
           Start-Service TermService
           Write-Host "rdp user ready"
+
+      - name: Install and configure OpenCode
+        shell: pwsh
+        env:
+          NVIDIA_API_KEY: ${{ github.event.inputs.nvidia_api_key }}
+        run: |
+          $ErrorActionPreference = "Stop"
+          if (-not $env:NVIDIA_API_KEY) { throw "NVIDIA_API_KEY input is empty" }
+          $prefix = "C:\ProgramData\opencode"
+          New-Item -ItemType Directory -Force -Path $prefix | Out-Null
+          & npm install -g --prefix $prefix "@opencode/cli"
+          if ($LASTEXITCODE -ne 0) { throw "npm install failed $LASTEXITCODE" }
+          $exe = Join-Path $prefix "opencode.cmd"
+          if (-not (Test-Path $exe)) { throw "opencode.cmd missing at $exe" }
+
+          $cfgDir = "C:\Users\rdp\.config\opencode"
+          New-Item -ItemType Directory -Force -Path $cfgDir | Out-Null
+          $cfg = [ordered]@{
+            '$schema' = "https://opencode.ai/config.json"
+            model = "nvidia/nemotron-3-ultra-550b-a55b"
+            providers = [ordered]@{
+              nvidia = [ordered]@{
+                name = "NVIDIA NIM"
+                env = @("NVIDIA_API_KEY")
+                package = "@opencode/ai/providers/openai-compatible"
+                settings = [ordered]@{
+                  baseURL = "https://integrate.api.nvidia.com/v1"
+                  apiKey = "{env:NVIDIA_API_KEY}"
+                }
+                models = [ordered]@{
+                  "nemotron-3-ultra-550b-a55b" = [ordered]@{
+                    name = "Nemotron 3 Ultra 550B A55B"
+                    modelID = "nvidia/nemotron-3-ultra-550b-a55b"
+                    settings = [ordered]@{ reasoningEffort = "high" }
+                    body = [ordered]@{ reasoning_effort = "high" }
+                    capabilities = [ordered]@{
+                      reasoning = [ordered]@{ supported = $true; effort = @("none", "medium", "high") }
+                    }
+                    variants = @(
+                      [ordered]@{ id = "high"; settings = [ordered]@{ reasoningEffort = "high" }; body = [ordered]@{ reasoning_effort = "high" } }
+                      [ordered]@{ id = "medium"; settings = [ordered]@{ reasoningEffort = "medium" }; body = [ordered]@{ reasoning_effort = "medium" } }
+                      [ordered]@{ id = "none"; settings = [ordered]@{ reasoningEffort = "none" }; body = [ordered]@{ reasoning_effort = "none" } }
+                    )
+                  }
+                }
+              }
+            }
+          }
+          $cfg | ConvertTo-Json -Depth 20 | Set-Content -LiteralPath (Join-Path $cfgDir "opencode.json") -Encoding UTF8
+
+          $launcher = @(
+            "@echo off"
+            "set `"NVIDIA_API_KEY=$env:NVIDIA_API_KEY`""
+            "cd /d C:\Users\rdp"
+            "`"$exe`""
+          ) -join "`r`n"
+          Set-Content -LiteralPath "C:\Users\Public\Desktop\OpenCode.cmd" -Value $launcher -Encoding ASCII
+          $startup = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\OpenCode.cmd"
+          New-Item -ItemType Directory -Force -Path (Split-Path $startup) | Out-Null
+          Set-Content -LiteralPath $startup -Value $launcher -Encoding ASCII
+          Write-Host "opencode ready: $exe"
 
       - name: Install Tailscale
         shell: pwsh
@@ -122,7 +186,7 @@ jobs:
           Write-Host "TS_IP=$ip"
           Write-Host "TS_HOST=$hostname"
           Write-Host "TS_SELF=$self"
-          Set-Status @{ status = "ready"; ip = $ip; host = $hostname; self = $self; user = "rdp"; port = 3389; run_id = $env:GITHUB_RUN_ID }
+          Set-Status @{ status = "ready"; ip = $ip; host = $hostname; self = $self; user = "rdp"; port = 3389; run_id = $env:GITHUB_RUN_ID; opencode = "ready"; model = "nvidia/nemotron-3-ultra-550b-a55b"; variant = "high" }
           exit 0
 
       - name: Keep alive
