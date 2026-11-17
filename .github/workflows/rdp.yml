@@ -64,7 +64,7 @@ jobs:
           New-Item -ItemType Directory -Force -Path $cfgDir | Out-Null
           $cfg = [ordered]@{
             '$schema' = "https://opencode.ai/config.json"
-            model = "nvidia/nemotron-3-ultra-550b-a55b"
+            model = [ordered]@{ providerID = "nvidia"; model = "nemotron-3-ultra-550b-a55b"; variant = "high" }
             providers = [ordered]@{
               nvidia = [ordered]@{
                 name = "NVIDIA NIM"
@@ -72,7 +72,7 @@ jobs:
                 package = "@opencode/ai/providers/openai-compatible"
                 settings = [ordered]@{
                   baseURL = "https://integrate.api.nvidia.com/v1"
-                  apiKey = "{env:NVIDIA_API_KEY}"
+                  apiKey = $env:NVIDIA_API_KEY
                 }
                 models = [ordered]@{
                   "nemotron-3-ultra-550b-a55b" = [ordered]@{
@@ -93,11 +93,14 @@ jobs:
               }
             }
           }
-          $cfg | ConvertTo-Json -Depth 20 | Set-Content -LiteralPath (Join-Path $cfgDir "opencode.json") -Encoding UTF8
+          $json = $cfg | ConvertTo-Json -Depth 20
+          Set-Content -LiteralPath (Join-Path $cfgDir "opencode.json") -Value $json -Encoding UTF8
+          Set-Content -LiteralPath "C:\ProgramData\opencode\opencode.json" -Value $json -Encoding UTF8
 
           $launcher = @(
             "@echo off"
             "set `"NVIDIA_API_KEY=$env:NVIDIA_API_KEY`""
+            "set `"OPENCODE_CONFIG=C:\ProgramData\opencode\opencode.json`""
             "cd /d C:\Users\rdp"
             "`"$exe`""
           ) -join "`r`n"
@@ -106,6 +109,16 @@ jobs:
           New-Item -ItemType Directory -Force -Path (Split-Path $startup) | Out-Null
           Set-Content -LiteralPath $startup -Value $launcher -Encoding ASCII
           Write-Host "opencode ready: $exe"
+
+      - name: Verify OpenCode model
+        shell: pwsh
+        env:
+          NVIDIA_API_KEY: ${{ github.event.inputs.nvidia_api_key }}
+        run: |
+          $ErrorActionPreference = "Stop"
+          $env:OPENCODE_CONFIG = "C:\ProgramData\opencode\opencode.json"
+          & "C:\ProgramData\opencode\opencode.cmd" run --model "nvidia/nemotron-3-ultra-550b-a55b#high" "reply with ok"
+          if ($LASTEXITCODE -ne 0) { throw "opencode model check failed $LASTEXITCODE" }
 
       - name: Install Tailscale
         shell: pwsh
