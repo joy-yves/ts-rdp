@@ -1,1 +1,1 @@
-{"ip":"100.114.111.92","user":"rdp","role":"worker1","run_id":"45982352452","mt5":"ready","status":"ready","self":"beta-worker1-45982352452.taila83ca6.ts.net.","host":"beta-worker1-45982352452","port":3389,"opencode":"ready","fleet":"beta"}
+{"host":"beta-worker1-46114667032","ip":"100.110.90.49","opencode":"ready","user":"rdp","fleet":"beta","port":3389,"run_id":"46114667032","status":"ready","role":"worker1","mt5":"ready","self":"beta-worker1-46114667032.taila83ca6.ts.net."}
