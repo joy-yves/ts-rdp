@@ -1,0 +1,398 @@
+{
+  "contract_version": "wave2a-canonical-1",
+  "stage": "encode-5m",
+  "node": "0/2",
+  "platform": "Windows-2022Server-10.0.20348-SP0",
+  "python": "3.12.10",
+  "started_utc": "2026-11-28T15:48:45.314518+00:00",
+  "elapsed_s": 207.96318,
+  "checks_total": 4,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "name": "months_encoded_positive",
+      "ok": true,
+      "detail": "34 months"
+    },
+    {
+      "name": "nan_rate_zero",
+      "ok": true,
+      "detail": "nan_rate=0.0"
+    },
+    {
+      "name": "windows_positive",
+      "ok": true,
+      "detail": "592041 windows"
+    },
+    {
+      "name": "checkpoint_files_present",
+      "ok": true,
+      "detail": "34 .done files"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "parts/catalog_5m_2021-03.csv",
+      "bytes": 6013609,
+      "sha256": "ef2063131142eed98d9f71e4d7ca81308c4e4cdbca53c003052c82abefac016f"
+    },
+    {
+      "path": "parts/curves_5m_2021-03.npz",
+      "bytes": 8048318,
+      "sha256": "d36b6232e485c319cd1f30d2c352548f044e3aa0108273038013400c48fbf649"
+    },
+    {
+      "path": "parts/catalog_5m_2021-04.csv",
+      "bytes": 7688763,
+      "sha256": "497c15b72192cbc3a20751af14679c0e10951473a4bcfe94380f7fc48a24161d"
+    },
+    {
+      "path": "parts/curves_5m_2021-04.npz",
+      "bytes": 10280681,
+      "sha256": "184952a39840c056adb835a2778a47f9a1ed770e237846bd45448c3b1d44fed9"
+    },
+    {
+      "path": "parts/catalog_5m_2021-05.csv",
+      "bytes": 7945516,
+      "sha256": "16d414facc6623cb5d0330dcf3833c7d4642341b3b45a564f01ce95a0a48fccf"
+    },
+    {
+      "path": "parts/curves_5m_2021-05.npz",
+      "bytes": 10623234,
+      "sha256": "cbd5e6a91bad6164b7dafed871f701ad7a7d7531357f20b756eaf536e2163170"
+    },
+    {
+      "path": "parts/catalog_5m_2021-06.csv",
+      "bytes": 7685864,
+      "sha256": "3f266564aed9b4fef03d2339b0e91e6fe9bc81bb992e4e204322b96bac98a1a8"
+    },
+    {
+      "path": "parts/curves_5m_2021-06.npz",
+      "bytes": 10275345,
+      "sha256": "8c3a0cc4e1f32079cf8f36b604a8ffce61038430de641f69ddb95eee8673e56d"
+    },
+    {
+      "path": "parts/catalog_5m_2021-07.csv",
+      "bytes": 7945419,
+      "sha256": "b2abb0ea12a9ea6f8df9a8d1d0942c775a56c2f5bea4621483a562e347eb26f9"
+    },
+    {
+      "path": "parts/curves_5m_2021-07.npz",
+      "bytes": 10622834,
+      "sha256": "af726d34a7ad8bd2bc61f598c0caabe69297ed9e27165a80fcb193dba4585f6b"
+    },
+    {
+      "path": "parts/catalog_5m_2021-08.csv",
+      "bytes": 7946714,
+      "sha256": "ead87dfba119fb65d7c692a916c28afbe6fdee3c2070c57c60e8b19f92d29449"
+    },
+    {
+      "path": "parts/curves_5m_2021-08.npz",
+      "bytes": 10618220,
+      "sha256": "1639089322d02717ae382f9c01457f4e7e8332d58acf1960f876599fe1d3195f"
+    },
+    {
+      "path": "parts/catalog_5m_2021-09.csv",
+      "bytes": 7675797,
+      "sha256": "0b0988e5c078a4831d990bac372d80792c66d2c24c3c8769637c853b6caefdf7"
+    },
+    {
+      "path": "parts/curves_5m_2021-09.npz",
+      "bytes": 10261092,
+      "sha256": "d99cdb39e981a319973e5680a1a59d888645c0e6188edf0e7a12386ec8490bb3"
+    },
+    {
+      "path": "parts/catalog_5m_2021-10.csv",
+      "bytes": 7945394,
+      "sha256": "e2cac2a84bb4b332f6d35d669db07a0aec35ecab9462abcd22d6904643448e8d"
+    },
+    {
+      "path": "parts/curves_5m_2021-10.npz",
+      "bytes": 10622876,
+      "sha256": "a01d787cc7d9e2005cdf66c232a74f86dd3b37d8005037eaef808aae37376479"
+    },
+    {
+      "path": "parts/catalog_5m_2021-11.csv",
+      "bytes": 7686455,
+      "sha256": "272fc9a4d145803872cab930cf6ac06ee2cc1c50651d8a9eeaf180d6cab3317c"
+    },
+    {
+      "path": "parts/curves_5m_2021-11.npz",
+      "bytes": 10277687,
+      "sha256": "bd672defde7a62776c2a26053e3be9fab4a7976d8ca92974282d227a817d432c"
+    },
+    {
+      "path": "parts/catalog_5m_2021-12.csv",
+      "bytes": 7939319,
+      "sha256": "d2bed40d4f60244baef7329a803571ab579c6434795d1500944402503ea5b19f"
+    },
+    {
+      "path": "parts/curves_5m_2021-12.npz",
+      "bytes": 10614288,
+      "sha256": "4705605cd8465aab54335fa6831e8351f0b13263de92fbfe9001698743ce8926"
+    },
+    {
+      "path": "parts/catalog_5m_2022-01.csv",
+      "bytes": 7965770,
+      "sha256": "2f4990e800f5d52464651b646d0c36e31982bac52bee2cd4e810897d83267f23"
+    },
+    {
+      "path": "parts/curves_5m_2022-01.npz",
+      "bytes": 10622880,
+      "sha256": "93afb6825ec37f53cc14ef377ca04596a10e50d8f649f8cf2c8f69382ebaaf85"
+    },
+    {
+      "path": "parts/catalog_5m_2022-02.csv",
+      "bytes": 7186415,
+      "sha256": "88297cda00cd21c148f3df728a3d74846d1ce071068960eb317cf2da69e7b91c"
+    },
+    {
+      "path": "parts/curves_5m_2022-02.npz",
+      "bytes": 9592859,
+      "sha256": "c1692d319ee9bb7cab5b64cd97f97977be501c539c920b2d201054aaf6b4dcb7"
+    },
+    {
+      "path": "parts/catalog_5m_2022-03.csv",
+      "bytes": 7964094,
+      "sha256": "b63030c2048b8e6d42cceaa19865b0c1fa008be9114fb4d140155ef5f0bb9080"
+    },
+    {
+      "path": "parts/curves_5m_2022-03.npz",
+      "bytes": 10622692,
+      "sha256": "3aa1b6858df4113c589318a1eaf731634a328a88457608edeb8f51b67d2b800e"
+    },
+    {
+      "path": "parts/catalog_5m_2022-04.csv",
+      "bytes": 7697996,
+      "sha256": "e1ea940a7381fd0e681f72dffdda986d6e38b1faf46036232d6367871e8de5f6"
+    },
+    {
+      "path": "parts/curves_5m_2022-04.npz",
+      "bytes": 10270397,
+      "sha256": "1189aa7bd25fb278fb4d6270e4f30751adfc1a229854a6ee32a9bbf71431cd13"
+    },
+    {
+      "path": "parts/catalog_5m_2022-05.csv",
+      "bytes": 7961105,
+      "sha256": "548181f9937e59c3f4a3486195d241a0da13fdb3394bb5870477438c8a297286"
+    },
+    {
+      "path": "parts/curves_5m_2022-05.npz",
+      "bytes": 10615646,
+      "sha256": "eb94ea98c5524ba74968cb7a4f64c06a3318985eb9f0b5a9d6e32a310df27a9d"
+    },
+    {
+      "path": "parts/catalog_5m_2022-06.csv",
+      "bytes": 7705364,
+      "sha256": "d5b747ce04f79ce1469611d6ae3a0980c902792fc14f8503cd72d3bace6bd799"
+    },
+    {
+      "path": "parts/curves_5m_2022-06.npz",
+      "bytes": 10280759,
+      "sha256": "cffecf100c3ce5c9d9a1e2d6511fc40054eecfe10e9cbe25e56472d21be144b1"
+    },
+    {
+      "path": "parts/catalog_5m_2022-07.csv",
+      "bytes": 7944240,
+      "sha256": "3157a5a9d80fd1af9764928eabff8cb9bb04b22c42635d4df4ef5dff94735572"
+    },
+    {
+      "path": "parts/curves_5m_2022-07.npz",
+      "bytes": 10594798,
+      "sha256": "abab2cea0a97942b63d4a4db5558056f8ba478810f6e02085ff51ef8545d874a"
+    },
+    {
+      "path": "parts/catalog_5m_2022-08.csv",
+      "bytes": 7939466,
+      "sha256": "3198ee76f53615a8ac55ec9f2c7f73a37b5c936aac01104ffc4c688f49537fad"
+    },
+    {
+      "path": "parts/curves_5m_2022-08.npz",
+      "bytes": 10591842,
+      "sha256": "aa8e432e3b34e27d9a55e952ee8089e6b72aac05777e5a439c4a446d06473b98"
+    },
+    {
+      "path": "parts/catalog_5m_2022-09.csv",
+      "bytes": 7708487,
+      "sha256": "0490691f14c6dd63c51b81e9ca9b0d7f48c56959e71d60f9cff7fb9602a7678d"
+    },
+    {
+      "path": "parts/curves_5m_2022-09.npz",
+      "bytes": 10278872,
+      "sha256": "7fba8411bfd6530cdb3dfbb8430503a5505eb83aa2a3966a20e66418f3609598"
+    },
+    {
+      "path": "parts/catalog_5m_2022-10.csv",
+      "bytes": 7958995,
+      "sha256": "b91135194e793b0b61126b8a21d492288a1e7a7433f92701bb719c6b9a363425"
+    },
+    {
+      "path": "parts/curves_5m_2022-10.npz",
+      "bytes": 10617231,
+      "sha256": "1e5cf772631a4642c419854038ac7b362677882057057feb389d15d053c84047"
+    },
+    {
+      "path": "parts/catalog_5m_2022-11.csv",
+      "bytes": 7697923,
+      "sha256": "bc292f8205b784161806b988b9f73df3f81ff6ef404a7c358bc398f53112dbf5"
+    },
+    {
+      "path": "parts/curves_5m_2022-11.npz",
+      "bytes": 10268797,
+      "sha256": "e1d4f772dc50f7254d3784cea1cdd7cccfede0015b9c5ac3fc935938e0fd9c75"
+    },
+    {
+      "path": "parts/catalog_5m_2022-12.csv",
+      "bytes": 7955209,
+      "sha256": "425c1af21a320f1d528043285903488e156b309c73f8f98e77261f54f064ee90"
+    },
+    {
+      "path": "parts/curves_5m_2022-12.npz",
+      "bytes": 10621028,
+      "sha256": "5d2296dc36852840f7728d44f8348f8bb2cfcc569304b5f32a89a5c2eb41aad9"
+    },
+    {
+      "path": "parts/catalog_5m_2023-01.csv",
+      "bytes": 7956306,
+      "sha256": "a3e1a23debaac6f77a99b1a485bbbd4b3148ccca8da4cd5e70568a9105341bdd"
+    },
+    {
+      "path": "parts/curves_5m_2023-01.npz",
+      "bytes": 10618712,
+      "sha256": "4fae70364b10076f1213dbc77814f74932e0c7daa99f262c38e4f50f25b4706b"
+    },
+    {
+      "path": "parts/catalog_5m_2023-02.csv",
+      "bytes": 7185030,
+      "sha256": "54ff7a418a7e25ac9b6a07d3d402b074ba162c3a2d570a233eed62d86993e99f"
+    },
+    {
+      "path": "parts/curves_5m_2023-02.npz",
+      "bytes": 9590856,
+      "sha256": "fdb487403cadacc6f20bd448276c5c3170fb3e3b22022f9b99d3e074f6a404fd"
+    },
+    {
+      "path": "parts/catalog_5m_2023-03.csv",
+      "bytes": 7960445,
+      "sha256": "cd2220da191402997f1cef7f52d2fa4026437b33ab50f0600963c1901bb2e63f"
+    },
+    {
+      "path": "parts/curves_5m_2023-03.npz",
+      "bytes": 10617002,
+      "sha256": "6a62eab74466879c96046b028d9254f492dab82ba88d15c10fe2d669dc90de1c"
+    },
+    {
+      "path": "parts/catalog_5m_2023-04.csv",
+      "bytes": 7703139,
+      "sha256": "a7618e6ade7276de2de25f79e0a24cc69abcf3e806a2847da4b4ab7a77da1a38"
+    },
+    {
+      "path": "parts/curves_5m_2023-04.npz",
+      "bytes": 10273745,
+      "sha256": "6ce60b10b697ea9fce185a9d88b7ebe45bfb1e5d42bf10adbbb4a70a34d39ecd"
+    },
+    {
+      "path": "parts/catalog_5m_2023-05.csv",
+      "bytes": 7954567,
+      "sha256": "4d1e58b11d442b2caf128fc344bd333c43ad285a600a5f38d16c6d50f9468df1"
+    },
+    {
+      "path": "parts/curves_5m_2023-05.npz",
+      "bytes": 10616009,
+      "sha256": "f83e7d01a19d079055bc972b7baf67f0979cff921253a333afac049d9f60c3af"
+    },
+    {
+      "path": "parts/catalog_5m_2023-06.csv",
+      "bytes": 7704710,
+      "sha256": "1eeea8951ae0ec158af33de07aa1cc961610839c8e31026113a6caa8ca83e0d3"
+    },
+    {
+      "path": "parts/curves_5m_2023-06.npz",
+      "bytes": 10277006,
+      "sha256": "995d420fb8ca7b6343c279b6133c0c66689bd73d0880d3ccb982a52b55aa0515"
+    },
+    {
+      "path": "parts/catalog_5m_2023-07.csv",
+      "bytes": 7955680,
+      "sha256": "f11af9b4d69408b8978436d82e416493197362b877ed397067ed9aaabd8abfa0"
+    },
+    {
+      "path": "parts/curves_5m_2023-07.npz",
+      "bytes": 10614919,
+      "sha256": "66de52c502901251c5119fa769e010cfda62d438d89262add7a60b0cad8c4f44"
+    },
+    {
+      "path": "parts/catalog_5m_2023-08.csv",
+      "bytes": 7959417,
+      "sha256": "a2cb2e8e94402d7ca0351a95dd8465aece98c498b2e35b9ebc43dc0a5872ab9f"
+    },
+    {
+      "path": "parts/curves_5m_2023-08.npz",
+      "bytes": 10617733,
+      "sha256": "40497ad7b124c59cf41c66087da1d2f0f97dd304eedd253e1a962b76bdb266d7"
+    },
+    {
+      "path": "parts/catalog_5m_2023-09.csv",
+      "bytes": 7702742,
+      "sha256": "531e870e18c4a042f219ad792a3ccf2b1dfa8f486c03a27daa49554ecbdbba7e"
+    },
+    {
+      "path": "parts/curves_5m_2023-09.npz",
+      "bytes": 10276438,
+      "sha256": "18f7c1d6358907eecd77ac2a22aa05cf2f83c9b75b0dcbda32c3c00c3e21a689"
+    },
+    {
+      "path": "parts/catalog_5m_2023-10.csv",
+      "bytes": 7954785,
+      "sha256": "cece058fdaa094072fe2b145e0a6bb08dbc48571098b4cb281218bf731e2db68"
+    },
+    {
+      "path": "parts/curves_5m_2023-10.npz",
+      "bytes": 10616508,
+      "sha256": "826cc409146a66491c87b95e5e1bd6c94f402ccb416c9f40e4541cd05a4f238c"
+    },
+    {
+      "path": "parts/catalog_5m_2023-11.csv",
+      "bytes": 7704083,
+      "sha256": "7e54e81f0093758b1bfc3ba0d33822e8fe93a62574a9a9f91955b751c74800d3"
+    },
+    {
+      "path": "parts/curves_5m_2023-11.npz",
+      "bytes": 10275535,
+      "sha256": "2072ad91b6d1c6ea48b2343cdb10ac50f64671970572efcfdddeff72a14bca62"
+    },
+    {
+      "path": "parts/catalog_5m_2023-12.csv",
+      "bytes": 7965597,
+      "sha256": "2f3fb36b1e138d880a801e7c4d2b59809df0618c612410bbde4e128a1090bcbc"
+    },
+    {
+      "path": "parts/curves_5m_2023-12.npz",
+      "bytes": 10621081,
+      "sha256": "930ccf767ab1b0a532abc0ebf840e695d4f5ff2c07c68d767d75d44bd469b634"
+    }
+  ],
+  "encoded_months_count": 34,
+  "expected_months_count": 34,
+  "nan_rate": 0.0,
+  "timestamp_equality_proof": null,
+  "provenance": {
+    "runner_name": "local-runner",
+    "github_run_id": "46151037731",
+    "hostname": "runnervmmklod",
+    "tailscale_ip": "100.114.162.55",
+    "node_index": 1,
+    "shard_id": "0/2",
+    "pid": 776,
+    "utc_timestamp": "2026-11-28T15:52:13.996605+00:00"
+  },
+  "metrics": {
+    "tf": "5m",
+    "window_count": 592041,
+    "win_ms": 300000,
+    "stride_ms": 150000,
+    "stride_frac": 0.5,
+    "budget_hit": false,
+    "months_requested": 34
+  }
+}

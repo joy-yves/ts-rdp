@@ -1,0 +1,98 @@
+{
+  "contract_version": "wave2a-canonical-1",
+  "stage": "merge-15m",
+  "node": "merged",
+  "platform": "Windows-2022Server-10.0.20348-SP0",
+  "python": "3.12.10",
+  "started_utc": "2026-11-28T15:46:13.023332+00:00",
+  "elapsed_s": 23.827904,
+  "checks_total": 9,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "name": "catalog_rows_match_curves",
+      "ok": true,
+      "detail": "393076 rows vs 393076"
+    },
+    {
+      "name": "month_coverage",
+      "ok": true,
+      "detail": "68 >= 68"
+    },
+    {
+      "name": "nan_rate_zero",
+      "ok": true,
+      "detail": "nan_rate=0.0"
+    },
+    {
+      "name": "global_window_keys_unique",
+      "ok": true,
+      "detail": "393076 unique of 393076"
+    },
+    {
+      "name": "dpoc_genuinely_distinct",
+      "ok": true,
+      "detail": "0.9378 of rows have dpoc != 0"
+    },
+    {
+      "name": "asymmetry_bounded",
+      "ok": true,
+      "detail": "max|asymmetry|=0.995842"
+    },
+    {
+      "name": "asymmetry_non_degenerate",
+      "ok": true,
+      "detail": "max|asymmetry|=0.995842"
+    },
+    {
+      "name": "timestamp_proof_1000_exact",
+      "ok": true,
+      "detail": "1000/1000"
+    },
+    {
+      "name": "lf_only_artifacts",
+      "ok": true,
+      "detail": "catalog has no CRLF"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "catalog_15m_merged.csv",
+      "bytes": 176267355,
+      "sha256": "fba704ec50e6370ef792e50b9a6e971375f51cb510326f292b4db8dff93fecfb"
+    },
+    {
+      "path": "curves_15m_merged.npz",
+      "bytes": 233843923,
+      "sha256": "fa3dbacee16ea9355bcabf202a1470b13740a60df6cb2be11cfdcf0d448c840f"
+    }
+  ],
+  "encoded_months_count": 68,
+  "expected_months_count": 68,
+  "nan_rate": 0.0,
+  "timestamp_equality_proof": {
+    "matched": 1000,
+    "total": 1000,
+    "sampled": 1000,
+    "method": "epoch-aligned window boundaries (stride grid) vs raw tick month bounds (min_ms/max_ms), window_key tuple equality and n_ticks > 0",
+    "ok": true
+  },
+  "provenance": {
+    "runner_name": "local-runner",
+    "github_run_id": "46151037731",
+    "hostname": "runnervmmklod",
+    "tailscale_ip": "100.122.36.120",
+    "node_index": 0,
+    "shard_id": "merged",
+    "pid": 6980,
+    "utc_timestamp": "2026-11-28T15:46:37.472173+00:00"
+  },
+  "metrics": {
+    "tf": "15m",
+    "window_count": 393076,
+    "window_count_unique_keys": 393076,
+    "month_count": 68,
+    "dpoc_nonzero_fraction": 0.93785,
+    "max_abs_asymmetry": 0.995842
+  }
+}

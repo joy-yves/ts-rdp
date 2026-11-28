@@ -1,0 +1,398 @@
+{
+  "contract_version": "wave2a-canonical-1",
+  "stage": "encode-15m",
+  "node": "0/2",
+  "platform": "Windows-2022Server-10.0.20348-SP0",
+  "python": "3.12.10",
+  "started_utc": "2026-11-28T15:31:36.879699+00:00",
+  "elapsed_s": 86.898165,
+  "checks_total": 4,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "name": "months_encoded_positive",
+      "ok": true,
+      "detail": "34 months"
+    },
+    {
+      "name": "nan_rate_zero",
+      "ok": true,
+      "detail": "nan_rate=0.0"
+    },
+    {
+      "name": "windows_positive",
+      "ok": true,
+      "detail": "197315 windows"
+    },
+    {
+      "name": "checkpoint_files_present",
+      "ok": true,
+      "detail": "34 .done files"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "parts/catalog_15m_2021-03.csv",
+      "bytes": 2008176,
+      "sha256": "59681c91cfd2f4c68f74f39a7569cf689d05857bc900aac6cd8ad30512a71084"
+    },
+    {
+      "path": "parts/curves_15m_2021-03.npz",
+      "bytes": 2680853,
+      "sha256": "32b9e2a705eac42eb44f6850d27923ff958a07df4ac9d23899952c74639c942c"
+    },
+    {
+      "path": "parts/catalog_15m_2021-04.csv",
+      "bytes": 2567321,
+      "sha256": "644b8d639eda5802cc82f06d107026078fb790b84a76d9c30131c75954a202ab"
+    },
+    {
+      "path": "parts/curves_15m_2021-04.npz",
+      "bytes": 3426491,
+      "sha256": "c1b23263fd0f18088ada598d365a5dbf76deccc369b51b9491c74241975ba180"
+    },
+    {
+      "path": "parts/catalog_15m_2021-05.csv",
+      "bytes": 2651340,
+      "sha256": "d0b0b925e4a849fd272c0914f5c41b469f59e34973545e181f78b99d9cafa874"
+    },
+    {
+      "path": "parts/curves_15m_2021-05.npz",
+      "bytes": 3540223,
+      "sha256": "15d086aa75a41e17e186a8e95aba7cc31089bf488f62e2a8dbe5cb2c9468e6d1"
+    },
+    {
+      "path": "parts/catalog_15m_2021-06.csv",
+      "bytes": 2565410,
+      "sha256": "550d0ef10d5358c7f3100ec7ed6ce972bdb3d9f43732e6f352ebda19e91f83c9"
+    },
+    {
+      "path": "parts/curves_15m_2021-06.npz",
+      "bytes": 3425394,
+      "sha256": "f2796c155c158f41136192fbe9a300a82e583767955e8f16d0a6f2e3403ec0d6"
+    },
+    {
+      "path": "parts/catalog_15m_2021-07.csv",
+      "bytes": 2652664,
+      "sha256": "330be9d8d99b50d494be76e5e2b23cf693e3710c02397b8621171ce6565c2955"
+    },
+    {
+      "path": "parts/curves_15m_2021-07.npz",
+      "bytes": 3540688,
+      "sha256": "5ba8c0d6dcc5b08b7116803ac8d37d53c6631c2c4128c3a3f18f9a91b36c39cc"
+    },
+    {
+      "path": "parts/catalog_15m_2021-08.csv",
+      "bytes": 2655144,
+      "sha256": "7df01b0a9907065cb7a4226692f5f538e7e7d130da252c910c1dd104e1f1906f"
+    },
+    {
+      "path": "parts/curves_15m_2021-08.npz",
+      "bytes": 3538862,
+      "sha256": "2fa904a4335dd33bdc8f05ff211b26ad2f8c4328500375a11391cdf7fc18393b"
+    },
+    {
+      "path": "parts/catalog_15m_2021-09.csv",
+      "bytes": 2563143,
+      "sha256": "fb8ced7b707ecfe91ab931d6e81e3706f6c2cfb75aaaf097da5e670b886cb051"
+    },
+    {
+      "path": "parts/curves_15m_2021-09.npz",
+      "bytes": 3419618,
+      "sha256": "2ab2dab209218e1d9a13e9ffc0045aec54d2399304762baf0d243a6f943acc77"
+    },
+    {
+      "path": "parts/catalog_15m_2021-10.csv",
+      "bytes": 2653468,
+      "sha256": "4d2360efd14622acdd2e74f8de01d2bef3cf75bdf6fc7ef83af0945e576dbeb8"
+    },
+    {
+      "path": "parts/curves_15m_2021-10.npz",
+      "bytes": 3540210,
+      "sha256": "4027b6d1c6aae120ac751d25bb0c1546a7f71a7ade7a636880fbd06696c97b2c"
+    },
+    {
+      "path": "parts/catalog_15m_2021-11.csv",
+      "bytes": 2567463,
+      "sha256": "259af606a3aff8c561cf3e6bc32b1522f06d2aaf1a2181578972528c937c291d"
+    },
+    {
+      "path": "parts/curves_15m_2021-11.npz",
+      "bytes": 3424227,
+      "sha256": "9266b94ecaaa60b17a1b5d2323d6daebfa56800d723be421e6e7f45b0c1ad45c"
+    },
+    {
+      "path": "parts/catalog_15m_2021-12.csv",
+      "bytes": 2649465,
+      "sha256": "4a4bad6392a41840f56765916939f78522e5e2eaf3270d9e5ff596c06c848bdc"
+    },
+    {
+      "path": "parts/curves_15m_2021-12.npz",
+      "bytes": 3537155,
+      "sha256": "5b678025970d3e47969c921fdd4f51979da10a40a65e5e742f307d28208554a5"
+    },
+    {
+      "path": "parts/catalog_15m_2022-01.csv",
+      "bytes": 2658737,
+      "sha256": "3798f5bf821f2ef1f6a57024613051fcfa84cecab7ce0e6ba06073602e4924e7"
+    },
+    {
+      "path": "parts/curves_15m_2022-01.npz",
+      "bytes": 3540134,
+      "sha256": "1e362ed60530af29e784286544c12d0b2d94776fe1396796b6dd0d41c431b408"
+    },
+    {
+      "path": "parts/catalog_15m_2022-02.csv",
+      "bytes": 2400787,
+      "sha256": "b49e6ca7d54a0ebfb76cff21fc4fc23bc58b9271b9517fc04c50ffab68d012ed"
+    },
+    {
+      "path": "parts/curves_15m_2022-02.npz",
+      "bytes": 3197926,
+      "sha256": "d7eb07e8e9c68fd238e6923364235d124c87cc4fde119fc2816b847329dfe392"
+    },
+    {
+      "path": "parts/catalog_15m_2022-03.csv",
+      "bytes": 2658574,
+      "sha256": "0de04bbb35523849b84ba29f7414b92d560676d937da196718c2d6d2a254149e"
+    },
+    {
+      "path": "parts/curves_15m_2022-03.npz",
+      "bytes": 3540107,
+      "sha256": "0c3838f41d42aebffe902bfcf87b1398a8b784e35a0a20492edaa46035a33014"
+    },
+    {
+      "path": "parts/catalog_15m_2022-04.csv",
+      "bytes": 2572126,
+      "sha256": "be21edfc45c2ef81600a38326bc80142d0392d30e2869edc64f81f249851cef5"
+    },
+    {
+      "path": "parts/curves_15m_2022-04.npz",
+      "bytes": 3422363,
+      "sha256": "90939c5200ef0011769a6d35cbae1fc7f55dac9007ef181d3203bfb1614c8b1a"
+    },
+    {
+      "path": "parts/catalog_15m_2022-05.csv",
+      "bytes": 2657323,
+      "sha256": "41c7295294fff3d736da82b4de03f9e6ebacd0c6a796d10151af7b0ca0c26a7e"
+    },
+    {
+      "path": "parts/curves_15m_2022-05.npz",
+      "bytes": 3537943,
+      "sha256": "7d065f8db00bc32b3fb10403f440d116196730b95ec9cf7ca42685ca52a1e4cc"
+    },
+    {
+      "path": "parts/catalog_15m_2022-06.csv",
+      "bytes": 2572412,
+      "sha256": "0f0520bb435ee5ccac29dcc166dfd6ff8dfb7108f414213469619efb2c63118a"
+    },
+    {
+      "path": "parts/curves_15m_2022-06.npz",
+      "bytes": 3426140,
+      "sha256": "6c694567adcedd6b39ab288485dc896a0795fd37fab65a4759f36c8e23fc6e56"
+    },
+    {
+      "path": "parts/catalog_15m_2022-07.csv",
+      "bytes": 2653433,
+      "sha256": "d5cc613c2d78f00bc95d28df751eb84cb5bc952f8649b7ea6dfff2440d6ef251"
+    },
+    {
+      "path": "parts/curves_15m_2022-07.npz",
+      "bytes": 3530058,
+      "sha256": "7e6f5b92f6a3d689dabacd17423e09443d360ab3b8b6874154a526c8c78f3c45"
+    },
+    {
+      "path": "parts/catalog_15m_2022-08.csv",
+      "bytes": 2651462,
+      "sha256": "bba355232e8a73c221fd5a0a37367e08c9d3c5fc5bdde1c17320409598af1d4d"
+    },
+    {
+      "path": "parts/curves_15m_2022-08.npz",
+      "bytes": 3529720,
+      "sha256": "ede22f09f32981b9866fc53a8070e67d12a03a92452685ceacd658d36a5d0ac0"
+    },
+    {
+      "path": "parts/catalog_15m_2022-09.csv",
+      "bytes": 2576266,
+      "sha256": "3d1f807e05a1f21988eae0a5fb437c59035dbd2c69b1d02fc61542b9a0988380"
+    },
+    {
+      "path": "parts/curves_15m_2022-09.npz",
+      "bytes": 3426670,
+      "sha256": "f3c48083c5d9fe570b0a12e3b81ae634126ed38b6c4b3ba68cbc2aa169900138"
+    },
+    {
+      "path": "parts/catalog_15m_2022-10.csv",
+      "bytes": 2659054,
+      "sha256": "c0998a0ab96610044d69a23c9aee02cc4d4223732b2c5f1a8b27115ad34868ef"
+    },
+    {
+      "path": "parts/curves_15m_2022-10.npz",
+      "bytes": 3539231,
+      "sha256": "9a0a23eaa22cd415b098c6ffdd522a22f2be7c88f96ca6a26def424c0946e918"
+    },
+    {
+      "path": "parts/catalog_15m_2022-11.csv",
+      "bytes": 2569351,
+      "sha256": "c0106fd9e6e1d010c31ebbdd9299fccb7fcbf0e5ad269efc9080e46d09466f7d"
+    },
+    {
+      "path": "parts/curves_15m_2022-11.npz",
+      "bytes": 3422517,
+      "sha256": "f2c3828e371b233e3623f3407c09497951c0722aea7528ce61637346a11901fb"
+    },
+    {
+      "path": "parts/catalog_15m_2022-12.csv",
+      "bytes": 2658967,
+      "sha256": "183823ab535ea60f567f5767c74852966481047c6d516a6d8313dbbf41d131c3"
+    },
+    {
+      "path": "parts/curves_15m_2022-12.npz",
+      "bytes": 3539105,
+      "sha256": "c8dd51fbd5d9deb0d89ab921982bbe536f84c38e98df21df952cbd5f72e1eb37"
+    },
+    {
+      "path": "parts/catalog_15m_2023-01.csv",
+      "bytes": 2658417,
+      "sha256": "30c4bee1efdc14b899115d3a9394a5a5ce56452189d4e03a32620a52c0439d03"
+    },
+    {
+      "path": "parts/curves_15m_2023-01.npz",
+      "bytes": 3539027,
+      "sha256": "93bb164339981de6a983c7f1046303eda319805b5221c0fbd8bb80399703be41"
+    },
+    {
+      "path": "parts/catalog_15m_2023-02.csv",
+      "bytes": 2401111,
+      "sha256": "b40c65af1772206d3d85ca969d928a31836370d670b51f3f8397b8010f62758b"
+    },
+    {
+      "path": "parts/curves_15m_2023-02.npz",
+      "bytes": 3196082,
+      "sha256": "f5f4b35dd4b9ff1703a924059fbe583e384eeab85abcd59a1f448d115f3ce149"
+    },
+    {
+      "path": "parts/catalog_15m_2023-03.csv",
+      "bytes": 2658776,
+      "sha256": "ff0142c6112ae2b32c2c72ee9ebb5bbd96980fc7ff698c6b9db5e03eac68e5c4"
+    },
+    {
+      "path": "parts/curves_15m_2023-03.npz",
+      "bytes": 3539911,
+      "sha256": "8bf4fd0cc71ec8ae35cd19f19a07cffe9497dde0f8b9533e3424155890547fab"
+    },
+    {
+      "path": "parts/catalog_15m_2023-04.csv",
+      "bytes": 2572571,
+      "sha256": "fb755929da3f8686e2698da66dacf66460504113353fc479a9829dc22eaa003e"
+    },
+    {
+      "path": "parts/curves_15m_2023-04.npz",
+      "bytes": 3423787,
+      "sha256": "e5081bae1dad6b3684fc96640e44557c394668156d965bed221f7f0c1339d6d3"
+    },
+    {
+      "path": "parts/catalog_15m_2023-05.csv",
+      "bytes": 2660399,
+      "sha256": "b7ef1f008f0cb53dde2a3df76cfdf5b8083b6d2dc3ad742576e9c43dc6aed115"
+    },
+    {
+      "path": "parts/curves_15m_2023-05.npz",
+      "bytes": 3538853,
+      "sha256": "0fb160215c8606df1e596aade5914ac54442670fca594c1a8bb265326c3f57bb"
+    },
+    {
+      "path": "parts/catalog_15m_2023-06.csv",
+      "bytes": 2574356,
+      "sha256": "f6a3789d905b07ff0b908a4c8f4f6f8f8e7f7ab470c5e71f8e841009c98d5e2f"
+    },
+    {
+      "path": "parts/curves_15m_2023-06.npz",
+      "bytes": 3426115,
+      "sha256": "1bb0206697ff24a7e09e8d297d84527f496f996ade8965eb65d07c373e13fdd2"
+    },
+    {
+      "path": "parts/catalog_15m_2023-07.csv",
+      "bytes": 2657544,
+      "sha256": "aa9b00f572f98e659f88f02aafdc2a1932aea4dfbc12ca8c6a00a9982b338940"
+    },
+    {
+      "path": "parts/curves_15m_2023-07.npz",
+      "bytes": 3537698,
+      "sha256": "bad47276ee2708e0a43504778d22b32b48cc07bb498a49cf6fcf48163fc48e96"
+    },
+    {
+      "path": "parts/catalog_15m_2023-08.csv",
+      "bytes": 2658824,
+      "sha256": "f30c003f5e5044c3128ce4ddcaf5b4a305a1a164c7e6326e31c1309374d4e4c6"
+    },
+    {
+      "path": "parts/curves_15m_2023-08.npz",
+      "bytes": 3539430,
+      "sha256": "985bf02895176ebcdc9d19bdc751607bcdebfc0f5b44a8fb9ba60d384953116e"
+    },
+    {
+      "path": "parts/catalog_15m_2023-09.csv",
+      "bytes": 2571102,
+      "sha256": "0aab7353ccf43dcb940e25047870bfdcceac6d6793e5844271e61ab31e7058f7"
+    },
+    {
+      "path": "parts/curves_15m_2023-09.npz",
+      "bytes": 3425561,
+      "sha256": "b5420fcd81431d6970b118250df629473a05e85c5d7728ae520a4c6c943bbc82"
+    },
+    {
+      "path": "parts/catalog_15m_2023-10.csv",
+      "bytes": 2658053,
+      "sha256": "35ae525d941f638b090dfd46f3e4ec45eda35da31a9f490eefb13fe9062d31e0"
+    },
+    {
+      "path": "parts/curves_15m_2023-10.npz",
+      "bytes": 3539227,
+      "sha256": "64f6dc530ae181791e2b6bef25c5678022a657ccaf39e7b80ebe422523d1e89b"
+    },
+    {
+      "path": "parts/catalog_15m_2023-11.csv",
+      "bytes": 2571550,
+      "sha256": "2b2b7b6e60a1e03a67336faadebe4031a84e31a777a3ee478607170c26f78c89"
+    },
+    {
+      "path": "parts/curves_15m_2023-11.npz",
+      "bytes": 3424407,
+      "sha256": "76444f4893a749154dc93ffdd6d45855cbec963f78ba54ff9974741c56e6ee06"
+    },
+    {
+      "path": "parts/catalog_15m_2023-12.csv",
+      "bytes": 2659555,
+      "sha256": "7e2ce9799470374480651e3f0b0c3486108757a82f79f630b22439a2dc73315b"
+    },
+    {
+      "path": "parts/curves_15m_2023-12.npz",
+      "bytes": 3540755,
+      "sha256": "4d5358297beb51a0df6970920e41e97593035da0020220a9254716beafd9314e"
+    }
+  ],
+  "encoded_months_count": 34,
+  "expected_months_count": 34,
+  "nan_rate": 0.0,
+  "timestamp_equality_proof": null,
+  "provenance": {
+    "runner_name": "local-runner",
+    "github_run_id": "46151037731",
+    "hostname": "runnervmmklod",
+    "tailscale_ip": "100.114.162.55",
+    "node_index": 1,
+    "shard_id": "0/2",
+    "pid": 1956,
+    "utc_timestamp": "2026-11-28T15:33:04.144885+00:00"
+  },
+  "metrics": {
+    "tf": "15m",
+    "window_count": 197315,
+    "win_ms": 900000,
+    "stride_ms": 450000,
+    "stride_frac": 0.5,
+    "budget_hit": false,
+    "months_requested": 34
+  }
+}
